@@ -10,7 +10,9 @@
   [![Platform](https://img.shields.io/badge/Platform-Windows%20x64-0078D6.svg?logo=windows&logoColor=white)](#)
   [![Electron](https://img.shields.io/badge/Electron-40.10.6-47848F.svg?logo=electron&logoColor=white)](#)
   [![Get it from Microsoft Store](https://img.shields.io/badge/Microsoft%20Store-Download-0078D6.svg?logo=windows&logoColor=white)](https://apps.microsoft.com/detail/9P0B6F65ZCQT?hl=en-us&gl=IN&ocid=pdpshare)
+  [![CI](https://github.com/roxoniclimited/roxonic-invoice/actions/workflows/ci.yml/badge.svg)](https://github.com/roxoniclimited/roxonic-invoice/actions/workflows/ci.yml)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+  [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 </div>
 

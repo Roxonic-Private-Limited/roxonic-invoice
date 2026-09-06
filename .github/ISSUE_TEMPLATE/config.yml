@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Community Discussions
+    url: https://github.com/roxoniclimited/roxonic-invoice/discussions
+    about: Ask questions, share ideas, and connect with other users.
+  - name: 🛍️ Microsoft Store Page
+    url: https://apps.microsoft.com/detail/9P0B6F65ZCQT?hl=en-us&gl=IN&ocid=pdpshare
+    about: Download and review Roxonic Invoice on the Microsoft Store.
+  - name: 🌐 Official Product Support
+    url: https://software.roxoniclimited.com
+    about: Reach out to the Roxonic support team for enterprise/commercial inquiries.

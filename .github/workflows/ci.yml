@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Validate package.json
+      run: node -e "JSON.parse(require('fs').readFileSync('package.json'))"
+
+    - name: Validate JavaScript Syntax
+      run: |
+        node -c electron/main.js
+        node -c electron/preload.js
+        node -c src/app.js
+
+    - name: Verify Documentation & Open Source Files
+      run: |
+        test -f LICENSE || (echo "LICENSE missing" && exit 1)
+        test -f README.md || (echo "README.md missing" && exit 1)
+        test -f CONTRIBUTING.md || (echo "CONTRIBUTING.md missing" && exit 1)
+        test -f SECURITY.md || (echo "SECURITY.md missing" && exit 1)
