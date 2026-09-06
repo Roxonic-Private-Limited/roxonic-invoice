@@ -9,9 +9,22 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
   [![Platform](https://img.shields.io/badge/Platform-Windows%20x64-0078D6.svg?logo=windows&logoColor=white)](#)
   [![Electron](https://img.shields.io/badge/Electron-40.10.6-47848F.svg?logo=electron&logoColor=white)](#)
+  [![Get it from Microsoft Store](https://img.shields.io/badge/Microsoft%20Store-Download-0078D6.svg?logo=windows&logoColor=white)](https://apps.microsoft.com/detail/9P0B6F65ZCQT?hl=en-us&gl=IN&ocid=pdpshare)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 </div>
+
+---
+
+## 📥 Get Roxonic Invoice
+
+Choose your preferred way to install and run Roxonic Invoice on Windows:
+
+| Installation Method | Link | Description |
+|---|---|---|
+| 🛍️ **Microsoft Store** | [**Get from Microsoft Store**](https://apps.microsoft.com/detail/9P0B6F65ZCQT?hl=en-us&gl=IN&ocid=pdpshare) | **Recommended.** Verified by Microsoft with seamless one-click installation and automatic background updates. |
+| 🌐 **Official Website** | [**Download Standalone Installer**](https://software.roxoniclimited.com/product/roxonic-invoice) | Official direct Windows x64 setup executable (`.exe`). |
+| 💻 **Build from Source** | [**Clone & Build**](#-packaging--building) | Complete open-source workflow using Electron & NSIS. |
 
 ---
 
@@ -179,5 +192,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 Maintained with ❤️ by **Roxonic Private Limited**.
 
-- Website: [roxoniclimited.com](https://roxoniclimited.com)
-- Product Page: [software.roxoniclimited.com/product/roxonic-invoice](https://software.roxoniclimited.com/product/roxonic-invoice)
+- **Website**: [roxoniclimited.com](https://roxoniclimited.com)
+- **Official Product Download**: [software.roxoniclimited.com/product/roxonic-invoice](https://software.roxoniclimited.com/product/roxonic-invoice)
+- **Microsoft Store**: [Roxonic Invoice on Microsoft Store](https://apps.microsoft.com/detail/9P0B6F65ZCQT?hl=en-us&gl=IN&ocid=pdpshare)

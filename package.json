@@ -5,6 +5,11 @@
   "main": "electron/main.js",
   "author": "Roxonic Private Limited",
   "license": "MIT",
+  "homepage": "https://software.roxoniclimited.com/product/roxonic-invoice",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roxoniclimited/roxonic-invoice.git"
+  },
   "allowScripts": [
     "electron",
     "electron-builder",
