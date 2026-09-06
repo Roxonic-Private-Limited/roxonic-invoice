@@ -1,0 +1,58 @@
+{
+  "name": "roxonic-invoice",
+  "version": "1.0.0",
+  "description": "Professional offline invoice maker for Windows",
+  "main": "electron/main.js",
+  "author": "Roxonic Private Limited",
+  "license": "MIT",
+  "allowScripts": [
+    "electron",
+    "electron-builder",
+    "electron-winstaller"
+  ],
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "dist": "electron-builder --win nsis --x64",
+    "create-cert": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/create-self-signed-cert.ps1",
+    "build:signed": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-signed.ps1",
+    "verify-signature": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify-signature.ps1"
+  },
+  "devDependencies": {
+    "electron": "40.10.6",
+    "electron-builder": "26.0.12"
+  },
+  "build": {
+    "appId": "com.roxoniclimited.invoice",
+    "productName": "Roxonic Invoice",
+    "icon": "build/icon.ico",
+    "artifactName": "Roxonic-Invoice-Setup-${version}.${ext}",
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Roxonic Invoice"
+    }
+  }
+}

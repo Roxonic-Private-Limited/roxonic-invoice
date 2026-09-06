@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roxonic Invoice</title>
+<link rel="icon" href="./assets/roxonic-logo.png">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark"><img src="./assets/roxonic-logo.png" alt="Roxonic"></div><div><b>ROXONIC</b><small>INVOICE OS</small></div></div>
+  <div class="workspace"><span class="pulse"></span><div><b id="side-business">Your Business</b><small>Offline workspace</small></div></div>
+  <div class="nav-label">WORKSPACE</div>
+  <nav>
+    <button class="nav active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+    <button class="nav" data-page="invoice">＋ <span>New Invoice</span></button>
+    <button class="nav" data-page="invoices">▤ <span>Invoices</span></button>
+    <button class="nav" data-page="customers">♙ <span>Customers</span></button>
+    <button class="nav" data-page="products">◈ <span>Products & Services</span></button>
+    <div class="nav-label">CUSTOMIZE</div>
+    <button class="nav" data-page="designer">✦ <span>Invoice Designer</span></button>
+    <button class="nav" data-page="business">⌂ <span>Business Profile</span></button>
+    <button class="nav" data-page="settings">⚙ <span>Settings</span></button>
+    <button class="nav" data-page="about">ⓘ <span>About Developer</span></button>
+  </nav>
+  <div class="offline"><span class="pulse"></span> 100% OFFLINE</div>
+</aside>
+
+<main class="content">
+<header class="topbar">
+  <div><div class="kicker">ROXONIC INVOICE OS</div><h1 id="page-title">Dashboard</h1><p id="page-subtitle">Fast, private, offline invoicing.</p></div>
+  <div class="top-actions"><span class="local-badge">● LOCAL DATA</span><button class="btn primary" id="top-new">＋ New Invoice</button></div>
+</header>
+
+<section class="page active" id="dashboard-page">
+  <div class="hero">
+    <div><span class="kicker">OFFLINE BILLING SUITE</span><h2>Build invoices that look as good as your business.</h2><p>Create, customize, export, print and share invoices without an internet connection for your data.</p></div>
+    <button class="btn primary xl" id="hero-new">Create Invoice →</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><span>INVOICES</span><strong id="s-count">0</strong><i>▤</i></div>
+    <div class="stat"><span>TOTAL BILLED</span><strong id="s-total">₹0.00</strong><i>₹</i></div>
+    <div class="stat"><span>COLLECTED</span><strong id="s-paid">₹0.00</strong><i>✓</i></div>
+    <div class="stat"><span>OUTSTANDING</span><strong id="s-due">₹0.00</strong><i>!</i></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><div class="panel-title"><div><h3>Quick actions</h3><p>Jump directly into your workflow.</p></div></div>
+      <div class="quick"><button data-target="invoice"><b>＋</b><span>New Invoice</span><small>Create a professional bill</small></button><button data-target="customers"><b>♙</b><span>Add Customer</span><small>Save customer details</small></button><button data-target="designer"><b>✦</b><span>Customize</span><small>Make your template yours</small></button><button data-target="business"><b>⌂</b><span>Business Profile</span><small>Logo, GSTIN & details</small></button></div>
+    </div>
+    <div class="panel"><div class="panel-title"><div><h3>Latest invoices</h3><p>Your most recent documents.</p></div><button class="text-btn" data-target="invoices">View all →</button></div><div id="latest"></div></div>
+  </div>
+</section>
+
+<section class="page" id="invoice-page">
+  <div class="invoice-workspace">
+    <div class="editor">
+      <div class="panel">
+        <div class="panel-title"><div><h3>Invoice setup</h3><p>Choose a customer, tax treatment and payment details.</p></div><span class="chip" id="invoice-chip">DRAFT • OFFLINE</span></div>
+        <div class="form four">
+          <label>Invoice number<input id="inv-no" readonly></label>
+          <label>Date<input id="inv-date" type="date"></label>
+          <label>Tax mode<select id="tax-mode">
+<option value="gst">With Tax — GST (CGST + SGST)</option>
+<option value="sgst">With Tax — SGST only</option>
+<option value="cgst">With Tax — CGST only</option>
+<option value="none">Without Tax — Bill of Supply</option>
+</select></label>
+          <label>Payment method<select id="inv-payment"><option>Cash</option><option>UPI</option><option>Card</option><option>Bank Transfer</option><option>Cheque</option><option>Other</option></select></label>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><div><h3>Customer</h3><p>Select an existing customer or add details.</p></div><button class="btn small" id="add-customer-inline">＋ New Customer</button></div>
+        <div class="form two">
+          <label>Select customer<select id="customer-select"><option value="">— Select customer —</option></select></label>
+          <label>Customer name<input id="c-name" placeholder="Customer / company name"></label>
+          <label>Phone<input id="c-phone"></label><label>GSTIN<input id="c-gstin" placeholder="Optional"></label>
+          <label class="wide">Address<textarea id="c-address" rows="2"></textarea></label>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><div><h3>Items</h3><p>Type naturally — fields no longer lose focus.</p></div><button class="btn small" id="add-item">＋ Add Item</button></div>
+        <div class="item-table"><table><thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Tax %</th><th>Discount</th><th>Amount</th><th></th></tr></thead><tbody id="items-body"></tbody></table></div>
+      </div>
+      <div class="panel">
+        <div class="form two">
+          <label>Invoice discount<input id="inv-discount" type="number" min="0" value="0"></label>
+          <label>Amount paid<input id="inv-paid" type="number" min="0" value="0"></label>
+          <label>Notes<textarea id="inv-notes" rows="3">Thank you for your business.</textarea></label>
+          <label>Terms & conditions<textarea id="inv-terms" rows="3">Goods once sold are subject to the terms agreed at the time of sale.</textarea></label>
+        </div>
+      </div>
+    </div>
+    <div class="preview">
+      <div class="preview-bar"><div><b>LIVE PREVIEW</b><small>Updates instantly</small></div><div class="actions"><button class="btn small" id="print-btn">Print</button><button class="btn small" id="pdf-btn">Export PDF</button><button class="btn primary small" id="save-btn">Save Invoice</button></div></div>
+      <div id="paper" class="paper"></div>
+      <div class="share-row">
+        <button data-share="whatsapp">WhatsApp</button><button data-share="email">Email</button><button data-share="copy">Copy Summary</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="invoices-page"><div class="panel"><div class="panel-title"><div><h3>Invoice history</h3><p>Search, inspect and reuse your invoices.</p></div><input class="search" id="invoice-search" placeholder="Search invoice or customer"></div><div class="table-scroll"><table><thead><tr><th>Invoice</th><th>Customer</th><th>Date</th><th>Total</th><th>Paid</th><th>Due</th><th>Status</th><th></th></tr></thead><tbody id="history"></tbody></table></div><div id="history-empty" class="empty">No invoices yet.</div></div></section>
+
+<section class="page" id="customers-page"><div class="panel"><div class="panel-title"><div><h3>Customer vault</h3><p>Everything stays on this computer.</p></div></div><div class="form four"><label>Name *<input id="nc-name"></label><label>Phone<input id="nc-phone"></label><label>Email<input id="nc-email"></label><label>GSTIN<input id="nc-gstin"></label><label class="wide">Address<input id="nc-address"></label></div><div class="right"><button class="btn" id="cancel-customer-edit" style="display:none">Cancel</button><button class="btn primary" id="save-customer">Add Customer</button></div></div><div class="panel"><div class="table-scroll"><table><thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>GSTIN</th><th>Address</th><th></th></tr></thead><tbody id="customers"></tbody></table></div><div id="customers-empty" class="empty">No customers yet.</div></div></section>
+
+<section class="page" id="products-page"><div class="panel"><div class="panel-title"><div><h3>Products & Services</h3><p>Save reusable items for faster invoice creation.</p></div></div><div class="form four"><label>Name *<input id="np-name"></label><label>SKU<input id="np-sku"></label><label>Rate<input id="np-rate" type="number" min="0"></label><label>Tax %<input id="np-tax" type="number" min="0" value="18"></label></div><div class="right"><button class="btn primary" id="save-product">Add Product</button></div></div><div class="panel"><div class="table-scroll"><table><thead><tr><th>Product</th><th>SKU</th><th>Rate</th><th>Tax</th><th></th></tr></thead><tbody id="products"></tbody></table></div><div id="products-empty" class="empty">No products yet.</div></div></section>
+
+<section class="page" id="designer-page"><div class="panel"><div class="panel-title"><div><h3>Invoice Designer</h3><p>Control the visual identity of every invoice.</p></div><button class="btn primary" id="save-design">Save Customization</button></div><div class="design-grid"><div><label>Template<select id="d-template"><option value="neon">Neon</option><option value="professional">Professional</option><option value="classic">Classic</option><option value="minimal">Minimal</option></select></label><label>Primary color<input id="d-color" type="color"></label><label>Currency<input id="d-currency"></label><label>Invoice prefix<input id="d-prefix"></label><label>Next number<input id="d-next" type="number" min="1"></label><label>Default tax %<input id="d-tax" type="number" min="0"></label></div><div class="design-preview"><div class="mini-logo">R</div><h2>YOUR INVOICE</h2><p>Live theme preview</p><div class="theme-line" id="theme-line"></div><div class="fake-lines"></div></div></div></div></section>
+
+<section class="page" id="business-page"><div class="panel"><div class="panel-title"><div><h3>Business identity</h3><p>Your logo and business details appear on invoices.</p></div><div class="logo-actions"><div id="logo-preview" class="logo-preview">LOGO</div><button class="btn" id="choose-logo">Upload Logo</button><button class="btn danger" id="remove-logo">Remove</button></div></div><div class="form two"><label>Business name<input id="b-name"></label><label>Phone<input id="b-phone"></label><label>Email<input id="b-email"></label><label>Website<input id="b-web"></label><label>GSTIN<input id="b-gstin"></label><label>PAN<input id="b-pan"></label><label class="wide">Address<textarea id="b-address" rows="3"></textarea></label></div><h3 class="subhead">Bank & payment</h3><div class="form two"><label>Bank name<input id="b-bank"></label><label>Account name<input id="b-account-name"></label><label>Account number<input id="b-account"></label><label>IFSC<input id="b-ifsc"></label><label>UPI ID<input id="b-upi"></label></div><div class="right"><button class="btn primary" id="save-business">Save Profile</button></div></div></section>
+
+<section class="page" id="settings-page"><div class="panel"><div class="panel-title"><div><h3>Settings</h3><p>Local application preferences.</p></div></div><div class="setting"><b>Data location</b><span>Local browser storage inside this desktop app</span></div><div class="setting"><b>Privacy</b><span>No cloud account and no invoice data upload</span></div><div class="setting"><b>Version</b><span>Roxonic Invoice 1.0.0 • Electron</span></div><div class="danger-zone"><b>Danger zone</b><p>Deletes all invoices, customers and products from this computer.</p><button class="btn danger" id="clear-data">Clear Local Data</button></div></div></section>
+
+<section class="page" id="about-page">
+  <div class="about-hero">
+    <div class="about-logo"><img src="./assets/roxonic-logo.png" alt="Roxonic Logo"></div>
+    <div>
+      <span class="kicker">ABOUT ROXONIC INVOICE</span>
+      <h2>Professional offline invoicing for modern businesses.</h2>
+      <p>Roxonic Invoice is a professional Windows desktop invoice maker built for businesses and individuals who want a fast, private and customizable way to create invoices. The application is designed to work offline, keeping everyday billing data on the local computer while providing a complete workflow for creating invoices, managing customers and products, applying the right tax treatment, adding business branding, printing documents, exporting A4 PDFs and sharing invoice information. It is built as a practical business software product with a clean interface and a focus on reliable day-to-day invoicing.</p>
+    </div>
+  </div>
+
+  <div class="panel about-features-panel">
+    <div class="panel-title">
+      <div><h3>Features</h3><p>Everything included in Roxonic Invoice.</p></div>
+    </div>
+    <div class="about-feature-grid">
+      <div><b>Invoice Maker</b><span>Create professional invoices with live A4 preview.</span></div>
+      <div><b>Customer Selection</b><span>Select existing customers directly while making an invoice.</span></div>
+      <div><b>Customer Management</b><span>Add, edit and delete customer records.</span></div>
+      <div><b>Products & Services</b><span>Save reusable products and services with rates and taxes.</span></div>
+      <div><b>GST — CGST + SGST</b><span>Create invoices with split CGST and SGST calculations.</span></div>
+      <div><b>CGST Only</b><span>Create invoices using CGST-only tax treatment.</span></div>
+      <div><b>SGST Only</b><span>Create invoices using SGST-only tax treatment.</span></div>
+      <div><b>Bill of Supply</b><span>Create invoices without tax for applicable supplies.</span></div>
+      <div><b>Custom Invoice Prefix</b><span>Set your own invoice prefix and numbering sequence.</span></div>
+      <div><b>Business Logo</b><span>Add your own business logo to invoices.</span></div>
+      <div><b>Business Profile</b><span>Store business name, address, phone, email, GSTIN and PAN.</span></div>
+      <div><b>Bank & UPI Details</b><span>Add bank information and UPI ID to invoices.</span></div>
+      <div><b>Item Discounts</b><span>Apply discounts to individual invoice items.</span></div>
+      <div><b>Invoice Discount</b><span>Apply an additional overall invoice discount.</span></div>
+      <div><b>Payment Tracking</b><span>Record paid amount, payment method and balance due.</span></div>
+      <div><b>Invoice History</b><span>Search, inspect and reuse saved invoices.</span></div>
+      <div><b>Invoice Designer</b><span>Customize template, primary color and currency.</span></div>
+      <div><b>Direct Printing</b><span>Print invoices directly from the Windows application.</span></div>
+      <div><b>PDF Export</b><span>Export properly formatted A4 PDF invoices.</span></div>
+      <div><b>Automatic PDF Filename</b><span>Downloads use Customer + Invoice Number for easy identification.</span></div>
+      <div><b>WhatsApp Sharing</b><span>Share invoice information through WhatsApp.</span></div>
+      <div><b>Email Sharing</b><span>Open your email client with invoice details prepared.</span></div>
+      <div><b>Copy Summary</b><span>Copy a clean invoice summary for quick sharing.</span></div>
+      <div><b>Offline Operation</b><span>Designed to work without a server or cloud account.</span></div>
+      <div><b>Local Data</b><span>Invoice, customer and product data is stored locally.</span></div>
+      <div><b>Professional Light Theme</b><span>Clean interface designed for professional business use.</span></div>
+      <div><b>Read-only Product Information</b><span>Official product information cannot be edited from the About page.</span></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <div class="panel-title"><div><h3>Product Information</h3><p>Product details.</p></div></div>
+      <div class="about-list">
+        <div><b>Product</b><span>Roxonic Invoice</span></div>
+        <div><b>Version</b><span>1.0.0</span></div>
+        <div><b>Platform</b><span>Windows Desktop</span></div>
+        <div><b>Architecture</b><span>Electron • HTML • CSS • JavaScript</span></div>
+        <div><b>Connectivity</b><span>Offline-first</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><div><h3>Developer & Company Information</h3><p>Official information.</p></div></div>
+      <div class="about-list">
+        <div><b>Developer</b><span>Team Roxonic</span></div>
+        <div><b>Website</b><button class="link-btn" data-external="https://roxoniclimited.com">roxoniclimited.com ↗</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel external-panel">
+      <div class="panel-title"><div><h3>Customer Support</h3><p>Get product support and assistance.</p></div></div>
+      <button class="external-card" data-external="https://software.roxoniclimited.com">
+        <b>Open Customer Support ↗</b>
+        <span>software.roxoniclimited.com</span>
+      </button>
+    </div>
+
+    <div class="panel external-panel">
+      <div class="panel-title"><div><h3>Update</h3><p>Visit the official software portal for updates.</p></div></div>
+      <button class="external-card" data-external="https://software.roxoniclimited.com/product/roxonic-invoice">
+        <b>Download / Update Roxonic Invoice ↗</b>
+        <span>software.roxoniclimited.com/product/roxonic-invoice</span>
+      </button>
+    </div>
+  </div>
+</section>
+<datalist id="product-list"></datalist></main>
+</div>
+<div id="saved-modal" class="modal-backdrop">
+  <div class="modal">
+    <div class="modal-icon">✓</div>
+    <div><span class="kicker">INVOICE CREATED</span><h2>Invoice saved successfully</h2><p id="saved-summary">Your invoice is safely stored on this computer.</p></div>
+    <div class="modal-actions">
+      <button class="btn" id="saved-print">Print Invoice</button>
+      <button class="btn" id="saved-pdf">Download PDF</button>
+      <button class="btn" id="saved-whatsapp">WhatsApp</button>
+      <button class="btn primary" id="saved-close">Done</button>
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
+<script src="./app.js"></script>
+</body>
+</html>
