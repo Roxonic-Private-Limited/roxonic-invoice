@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "electron": "40.10.6",
-    "electron-builder": "26.0.12"
+    "electron-builder": "26.15.3"
   },
   "build": {
     "appId": "com.roxoniclimited.invoice",
