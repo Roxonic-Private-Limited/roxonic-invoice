@@ -24,7 +24,7 @@
     "verify-signature": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify-signature.ps1"
   },
   "devDependencies": {
-    "electron": "40.10.6",
+    "electron": "45.1.0",
     "electron-builder": "26.0.12"
   },
   "build": {
